@@ -1,0 +1,44 @@
+#TO UPLOAD HAARASCADE FILES IN COLAB
+from google.colab import files
+file=files.upload()
+
+#TO UPLOAD THE PICTURE
+from google.colab import files
+file=files.upload()
+
+#REQUIRED LIBRARIES
+import numpy as np
+import cv2 
+from matplotlib import pyplot as plt
+from google.colab.patches import cv2_imshow
+
+#FOR ACCESSING THE HAARASCADE FILES
+face_classifier=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+eye_classifier=cv2.CascadeClassifier('haarcascade_eye.xml')
+
+#TO DISPLAY THE IMAGE
+image=cv2.imread('tony.png')
+fix_img=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+plt.imshow(fix_img)
+
+#SETTING THE SIZE AND COLOUR OF THE RECTANGLE BOXES
+def detect_faces_eyes(fix_img):
+    face_rects=face_classifier.detectMultiScale(fix_img)
+    for(x,y,w,h) in face_rects:
+        cv2.rectangle(fix_img,
+                     (x,y),
+                     (x+w,y+h),
+                     (255,0,0),
+                     7)
+    eye_rects=eye_classifier.detectMultiScale(fix_img)
+    for (ix,iy,iw,ih) in eye_rects:
+        cv2.rectangle(fix_img,
+                     (ix,iy),
+                     (ix+iw,iy+ih),
+                     (255,255,255),
+                     5)
+    return fix_img
+
+#TO DISPLAY THE FINAL IMAGE WITH FACE AND EYES DETECTED
+result=detect_faces_eyes(fix_img)
+plt.imshow(result)  
