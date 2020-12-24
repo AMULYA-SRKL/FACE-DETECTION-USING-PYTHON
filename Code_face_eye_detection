@@ -10,7 +10,6 @@ file=files.upload()
 import numpy as np
 import cv2 
 from matplotlib import pyplot as plt
-from google.colab.patches import cv2_imshow
 
 #FOR ACCESSING THE HAARASCADE FILES
 face_classifier=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
