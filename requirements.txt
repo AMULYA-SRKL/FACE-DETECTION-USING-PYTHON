@@ -1,4 +1,4 @@
 #REQUIRED LIBRARIES
-import numpy as np
-import cv2 
-from matplotlib import pyplot as plt
+!pip install numpy
+!pip install opencv-python
+!pip install matplotlib
